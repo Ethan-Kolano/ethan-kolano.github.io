@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocky | Ethan Kolano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="../index.html">&larr; All projects</a>
+
+    <header class="project-header">
+      <h1>Rocky</h1>
+      <p class="meta">Personal project · Summer 2026&ndash;present · In progress · Built with my brother</p>
+      <p class="summary">A five-legged walking robot modeled on Rocky from Project Hail Mary. I tested its motion in a physics simulation built from my CAD model, and it now walks and emotes on real hardware. I'm currently working on the shell and more complex motion.</p>
+    </header>
+
+    <!-- Hardware video and sim walking video, side by side (they stack on phones).
+         The home page card images/rocky.jpg is a square frame from the hardware video. -->
+    <div class="media-pair">
+      <figure>
+        <video src="../images/rocky-hardware.mp4" poster="../images/rocky-hardware-poster.jpg" autoplay muted loop playsinline aria-label="Rocky walking across a living room rug on real hardware"></video>
+        <figcaption>Rocky attempting to walk.</figcaption>
+      </figure>
+      <figure>
+        <video src="../images/rocky-sim-walk.mp4" poster="../images/rocky-sim-walk-poster.jpg" autoplay muted loop playsinline aria-label="Rocky walking with a wave gait in the PyBullet simulation"></video>
+        <figcaption>Updated gait in the PyBullet simulation.</figcaption>
+      </figure>
+    </div>
+
+    <div class="details">
+      <section>
+        <h2>Problem / Goal</h2>
+        <p>I loved Project Hail Mary and wanted to challenge myself by building my first real robot. I thought it would be super cool to have a real-life Rocky just chilling in my house.</p>
+        <p>The end goal is a Rocky that can wander around the house on its own and interact with people. The plan is to get there with computer vision, distance sensors, and a Rocky LLM. Along the way, it has to look like Rocky from the movie, so any change that made it more stable but less Rocky-like was out.</p>
+      </section>
+
+      <section>
+        <h2>My Role</h2>
+        <p>The physical robot is all mine. I did all of the mechanical design in Fusion 360, 3D printed and assembled the robot, and soldered and wired all of the electronics. The control code and PyBullet simulation were written with heavy help from AI. My part was deciding what Rocky needed to do, testing stability and gait in the simulation, and tracking down errors until they were resolved. My brother is taking on the vision side and future AI work.</p>
+      </section>
+
+      <section>
+        <h2>Design Process</h2>
+        <ul>
+          <li><strong>Mechanical design.</strong> Every part was modeled in Fusion 360 and 3D printed. Each leg has two DS3218 servos at the hip and an MG995 at the knee. Two PCA9685 driver boards control all 15 servos from an Arduino, powered by a 3S LiPo stepped down to 6&nbsp;V.</li>
+          <li><strong>A simulation built from the CAD.</strong> I brought the CAD model into PyBullet, a physics engine, so I could test motions before risking the hardware. Since the sim calculates real physics, the masses and inertias had to be accurate to tell whether the motors could actually lift and move everything. To make the model more accurate, I corrected the part weights exported from Fusion using the weights from the slicer.</li>
+          <li><strong>Sim-first testing.</strong> Every gait, pose, and emote ran in the sim first. When something failed, I pinned down which leg it was and what it did, worked out a fix, retested, and only then ran it on the robot.</li>
+          <li><strong>Staying upright.</strong> Rocky's odd geometry, with five legs instead of six and uneven spacing between them, made a stable walking gait a real challenge. Even with a simple wave gait, lifting certain legs moved the center of mass outside the planted feet, and Rocky would tip slightly. To fix it, I rotated where each foot rests to widen the footprint and shifted the center of mass ahead of certain lifts.</li>
+          <!-- TODO: gait-testing bullet (comparison of 15 gaits) once Ethan finds the results -->
+        </ul>
+      </section>
+
+      <section>
+        <h2>Where It Stands</h2>
+        <p>Rocky has stood, walked, and emoted on real hardware. Widening the stance raised the worst-case stability margin in the simulation from 34&nbsp;mm to 81&nbsp;mm. The gait has improved since my last hardware test.</p>
+        <p>Right now I'm designing the shell, which is harder than I expected. I'm turning a rock-textured mesh into editable solids that loosely enclose each part. One leg is partially shelled so far, but I really dislike working with STL files.</p>
+      </section>
+
+      <section>
+        <h2>What's Next</h2>
+        <ul>
+          <li>Design how the shell mounts, then finish the details and print it.</li>
+          <li>Test and refine the gait on the real robot.</li>
+          <li>Add the Jetson Orin Nano, a camera, and distance sensors so Rocky can run vision models and reinforcement learning.</li>
+          <li>Add more emotes.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tools Used</h2>
+        <p>Fusion 360, 3D printing, PyBullet (Python), Arduino, Claude (AI).</p>
+      </section>
+
+      <section>
+        <h2>What I've Learned So Far</h2>
+        <p>A simulation is only as good as what you put into it. Accurate part masses and friction coefficients are essential to getting results you can trust. Fusion first gave the printed parts the weight of solid plastic, so the sim said the servos couldn't lift Rocky when they actually could.</p>
+        <p>I wanted to see how capable AI is on a real project. It can write more complex code much faster than I can, but it can't see what it's doing. My job was figuring out why things were failing and describing those failures precisely, so the AI could handle the code changes.</p>
+      </section>
+    </div>
+
+    <!-- GALLERY: each item has a caption. Copy a <figure> block to add more.
+         class="wide" spans both columns; class="fit" shows the whole image; class="tall" makes it 3:4. -->
+    <div class="gallery">
+      <figure class="wide">
+        <img src="../images/rocky-cad.jpg" alt="Fusion 360 render of the full Rocky assembly without the shell">
+        <figcaption>The full CAD model in Fusion 360, before the shell.</figcaption>
+      </figure>
+      <figure>
+        <img class="fit tall" src="../images/rocky-shell-leg.jpg" alt="One of Rocky's legs with rock-textured shell pieces over the femur and tibia">
+        <figcaption>A leg with the rock shell partway done.</figcaption>
+      </figure>
+      <figure>
+        <video class="tall" src="../images/rocky-sim-wave.mp4" poster="../images/rocky-sim-wave-poster.jpg" autoplay muted loop playsinline aria-label="Rocky raising one leg and waving in the simulation"></video>
+        <figcaption>Hi! A wave emote, tested in the sim first.</figcaption>
+      </figure>
+    </div>
+
+    <p class="footer"><a href="../index.html">&larr; Back to all projects</a></p>
+  </main>
+</body>
+</html>

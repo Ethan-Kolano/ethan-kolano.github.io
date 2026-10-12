@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultrasonic Lens Cleaning System | Ethan Kolano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="../index.html">&larr; All projects</a>
+
+    <header class="project-header">
+      <h1>Ultrasonic Lens Cleaning System</h1>
+      <p class="meta">Senior Design (ME 470) · Sponsored by Carle Illinois College of Medicine · Spring 2026 · 6-person team</p>
+      <p class="summary">A proof-of-concept laparoscope attachment that uses a piezoelectric ring to vibrate a lens cover at ultrasonic frequencies, atomizing fluid off the lens without removing the scope from the patient.</p>
+    </header>
+
+    <!-- Main CAD view and demo video, side by side (they stack on phones).
+         The square photo images/ultrasonic.jpg is the home page card. -->
+    <div class="media-pair">
+      <figure>
+        <img src="../images/ultrasonic-exploded.jpg" alt="Exploded CAD view of the housing cap, Kapton film, lens, piezo ring, and housing base">
+        <figcaption>Exploded view: housing cap, Kapton suspension film, fused silica lens with epoxy bondlines, piezo ring, and housing base.</figcaption>
+      </figure>
+      <figure>
+        <video src="../images/ultrasonic-demo.mp4" poster="../images/ultrasonic-demo-poster.jpg" autoplay muted loop playsinline aria-label="Prototype atomizing a water droplet on the lens into a visible mist"></video>
+        <figcaption>Proof of concept: the vibrating lens atomizing a water droplet into mist.</figcaption>
+      </figure>
+    </div>
+
+    <div class="details">
+      <section>
+        <h2>Problem / Goal</h2>
+        <p>During laparoscopic surgery, blood, fog, and tissue regularly cover the camera lens. Clearing it usually means pulling the scope out, wiping it, and reinserting it, which takes about 30 seconds each time. That adds up to several percent of total operating time, and it can be dangerous when every second counts.</p>
+        <p>Our sponsor has a patent-pending concept that cleans the lens in place by vibrating it ultrasonically. The previous semester's team couldn't get the lens to vibrate meaningfully, so we redesigned the system from scratch. The goal was an upsized proof-of-concept prototype (before scaling down to fit a laparoscope) that could atomize fluid off the lens.</p>
+      </section>
+
+      <section>
+        <h2>My Role</h2>
+        <p>I owned the mechanical design and CAD, and supported the simulation and testing, which were led by a teammate. I also did most of the material sizing and selection, etched the lens in the cleanroom, and did most of the prep work and assembly.</p>
+      </section>
+
+      <section>
+        <h2>Design Process</h2>
+        <ul>
+          <li><strong>Lens sizing.</strong> To get large vibrations, the lens's natural frequency has to match the piezo's resonant frequency (33&nbsp;kHz). I modeled the lens as a clamped circular plate using Kirchhoff&ndash;Love plate theory, took the clamped-edge eigenvalue from published plate vibration data, and solved for the thickness that put the lens's first mode at 33&nbsp;kHz. The result was 1.94&nbsp;mm for a 25.4&nbsp;mm lens, so we used an off-the-shelf 2&nbsp;mm window.</li>
+          <li><strong>Material selection.</strong> I chose fused silica for the lens cover using a Pugh matrix against a standard borosilicate optical glass. Fused silica has very low internal damping, so more of the piezo's energy becomes lens motion instead of heat. It also has very low thermal expansion to tolerate heating from vibration, and it's compatible with the hydrophobic coating the sponsor uses. For the adhesive I picked EPO-TEK 353ND, a stiff epoxy (to keep damping at the bond low) that also comes in a medical-grade version.</li>
+          <li><strong>Housing and suspension.</strong> Clamping the vibrating parts directly kills the vibration. Following an approach from TI's camera-cleaning reference design, the lens and piezo hang from a thin Kapton film that's clamped between the two housing halves. The film holds the assembly in place radially but lets it move axially. Over a few iterations of the 3D-printed housing, I moved the wire exits to support two piezo electrode configurations, slimmed and cleaned up the design, and adjusted the clamping so the film stays taut.</li>
+          <li><strong>Bonding.</strong> Since the epoxy bond carries all of the vibration, we chemically etched the lens to improve adhesion. I worked with a research engineer in the university's micro/nano fabrication cleanroom to etch the lens in buffered oxide etch, masking off the areas that didn't need etching with laser-cut Kapton tape. The epoxy was applied by syringe right afterward and cured at 300&nbsp;&deg;F in a machined aluminum fixture that kept the lens, piezo, and film concentric.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <p>The prototype achieved proof of concept by atomizing water droplets off the lens. A frequency sweep on TI's ultrasonic lens cleaning controller showed peak power draw at 25.1&nbsp;kHz, but the strongest atomization came between 30 and 35&nbsp;kHz, closer to the 33&nbsp;kHz frequency the lens and piezo were designed around.</p>
+        <p>Shortly after testing, the prototype failed. The lens separated from the piezo, and the piezo face came away clean with no epoxy left on it, which pointed to poor surface prep on the piezo rather than the etched lens. Some solder joints on the piezo were also damaged by too much heat on its silver electrodes. After the semester ended, we tried a quick rebuild with a roughened and cleaned piezo surface, but there wasn't enough time to get conclusive results.</p>
+      </section>
+
+      <section>
+        <h2>Tools Used</h2>
+        <p>Fusion 360, ANSYS, 3D printing (PLA, PETG), laser cutter, TI ultrasonic lens cleaning controller.</p>
+      </section>
+
+      <section>
+        <h2>Lessons Learned</h2>
+        <p>Every bonded surface needs the same attention as the critical one. We put a lot of effort into etching the lens, but the bond failed at the piezo.</p>
+        <p>The glue fixture was our big budget surprise. The design got more complicated once it went through the machine shop, and the bill came back at about $1,300 (yikes!), roughly 5x what we expected. We got it negotiated down, but next time I'd sit down with the machinist early to keep the design as simple as possible while still doing its job, and get a quote before anything gets cut.</p>
+      </section>
+    </div>
+
+    <!-- GALLERY: each photo has a caption. Copy a <figure> block to add more.
+         class="wide" spans both columns; class="fit" shows the whole image without cropping. -->
+    <div class="gallery">
+      <figure class="wide">
+        <img src="../images/ultrasonic-section.jpg" alt="Cross-section of the assembled housing showing the lens and piezo suspended on the film">
+        <figcaption>Cross-section: the lens (pink) and piezo ring (purple) hang from the Kapton film, which is clamped between the housing cap and base. Nothing clamps the vibrating parts directly.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/ultrasonic-cleanroom.jpg" alt="Ethan in a cleanroom suit inside the micro/nano fabrication cleanroom">
+        <figcaption>Cleanroom time!!</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/ultrasonic-fixture.jpg" alt="Machined aluminum glue fixture holding the bonded lens, piezo, and Kapton film">
+        <figcaption>The bonded lens, piezo, and film in the aluminum glue fixture after curing.</figcaption>
+      </figure>
+      <figure>
+        <img class="fit" src="../images/ultrasonic-ansys.jpg" alt="ANSYS harmonic simulation contour of lens acceleration">
+        <figcaption>ANSYS simulation of lens acceleration at resonance, which confirmed the designed lens geometry vibrates in the intended mode.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/ultrasonic-failure.jpg" alt="Failed prototype with the lens detached from the piezo ring">
+        <figcaption>The failed prototype after the lens separated from the piezo.</figcaption>
+      </figure>
+    </div>
+
+    <p class="footer"><a href="../index.html">&larr; Back to all projects</a></p>
+  </main>
+</body>
+</html>

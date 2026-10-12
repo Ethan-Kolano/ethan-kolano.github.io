@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walking Linkage Machine | Ethan Kolano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="../index.html">&larr; All projects</a>
+
+    <header class="project-header">
+      <h1>Walking Linkage Machine</h1>
+      <p class="meta">ASME at UIUC · Engineering Open House · Spring 2025 · 9-person team · $300 budget</p>
+      <p class="summary">"The Beast": a rideable, roughly 8-foot walking machine built on Jansen linkages, made almost entirely from CNC-cut plywood and PVC on a $300 budget for UIUC's Engineering Open House.</p>
+    </header>
+
+    <!-- Assembled photo and demo video, side by side (they stack on phones).
+         The home page card images/walking-linkage.jpg is a square crop of the assembled photo. -->
+    <div class="media-pair">
+      <figure>
+        <img src="../images/walking-linkage-assembled.jpg" alt="The fully assembled walker with a rider's cab and seat in the middle and Jansen legs on each side">
+        <figcaption>Fully assembled: the rider's cab and hand cranks in the middle, with two pairs of legs on each side.</figcaption>
+      </figure>
+      <figure>
+        <video src="../images/walking-linkage-demo.mp4" poster="../images/walking-linkage-demo-poster.jpg" autoplay muted loop playsinline aria-label="Ethan seated in the walker turning the hand cranks while the legs step"></video>
+        <figcaption>Cranking it from the seat during testing.</figcaption>
+      </figure>
+    </div>
+
+    <div class="details">
+      <section>
+        <h2>Problem / Goal</h2>
+        <p>Engineering Open House is Grainger Engineering's yearly fair, where students show thousands of visitors what they've been building. I proposed this project through ASME mostly because a giant rideable walking machine sounded like a really fun thing to build. It also fit the event well, since something huge that moves in a way people don't expect stops kids (and adults) in their tracks.</p>
+        <p>The design is a sit-on walker about the size of an 8-foot cube. A rider turns hand cranks that drive the crankshafts, and each crankshaft runs a pair of Jansen linkage legs, two pairs on each side. The whole machine was heavy, so four wheels at the corners of the base carry the weight while the legs go through their walking motion. The hard constraint was a $300 budget for the whole machine, which set most of our material choices.</p>
+      </section>
+
+      <section>
+        <h2>My Role</h2>
+        <p>This was my project from start to finish. I proposed it, led a team of 9 (a mix of friends and club members who joined along the way), and split up the work during ASME's shared build sessions. I also did most of the hands-on work: I helped with the CAD and did nearly all of the fabrication, which meant learning to run a CNC router from scratch and spending a lot of hours at the machine.</p>
+      </section>
+
+      <section>
+        <h2>Design Process</h2>
+        <ul>
+          <li><strong>Linkage geometry.</strong> Theo Jansen already worked out the link ratios for a smooth walking gait, so we didn't need to re-derive them. We scaled his proportions up to a size that could carry a rider, modeled the links and crankshafts in Fusion 360, and built the rest of the frame by hand.</li>
+          <li><strong>Low-friction joints.</strong> The joints between links were made from two sizes of PVC pipe, with cut-to-length tubes pressed into the plywood, so the links rotated PVC-on-PVC instead of wood-on-wood. This cut the friction a lot, and our first test leg moved smoothly.</li>
+          <li><strong>Dialing in the fit.</strong> To get a true press fit, I cut a sizing coupon with 20&ndash;30 holes in small diameter steps and tested the PVC in each one. We picked the size that needed a mallet to drive the tube in, so it would stay snug.</li>
+          <li><strong>CNC fabrication.</strong> All of the links came from seven 4'&times;8' plywood sheets cut on the CNC router. It took a lot of trial and error (and LOTS of ruined parts) to get toolpaths, hold-down, and cut settings that worked. When parts started lifting during cuts, we switched from an upcut to a downcut bit.</li>
+          <li><strong>Frame and cranks.</strong> The crankshafts were metal pipe, joined with PVC elbows to form the offset crank throws. The elbows were a budget choice, and they turned out to be the weak point.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <p>In testing, it worked: I rode it and cranked it myself, and the legs went through the full Jansen walking motion. At Open House, it drew a crowd the whole time, and the kids were mesmerized by it. The Beast won 1st place for Outstanding RSO Exhibit at EOH 2025.</p>
+        <p>Getting there took some recovery. Midway through fabrication, our CNC bit went missing from the lab, and every part cut with the new one came out with loose joints. My best explanation: the old bit was worn slightly undersized, our sizing coupon was tuned to it, and the fresh bit cut true to size.</p>
+        <p>The bigger problem was the PVC elbows. They carried a lot of the machine's weight and the forces from walking, and they cracked during testing. Replacements cracked too. After the first day of the expo, we bought metal elbows and rebuilt about half of one leg with them. We raised that leg off the ground so visitors could crank it and watch the linkage motion up close, and it ran as a reliable demo for all of day two.</p>
+      </section>
+
+      <section>
+        <h2>Tools Used</h2>
+        <p>Fusion 360, CNC router, hand and power tools.</p>
+      </section>
+
+      <section>
+        <h2>Lessons Learned</h2>
+        <p>When something in the process changes, test again. Our sizing coupon only matched the bit we tuned it on, and after the swap every joint came out loose. Recutting the coupon with the new bit would have taken a few minutes and caught the problem right away.</p>
+        <p>The PVC elbows were trying to transmit more torque than they could handle. They were the cheapest part of the crankshafts but carried the most load, so next time that's where I'd spend the budget first.</p>
+      </section>
+    </div>
+
+    <!-- GALLERY: each photo has a caption. Copy a <figure> block to add more.
+         class="wide" spans both columns; class="fit" shows the whole image without cropping. -->
+    <div class="gallery">
+      <figure class="wide">
+        <img src="../images/walking-linkage-team.jpg" alt="Ethan seated in the walker with two teammates at Engineering Open House">
+        <figcaption>Me in the driver's seat with part of the team at Open House.</figcaption>
+      </figure>
+      <figure>
+        <img class="fit" src="../images/walking-linkage-cad.jpg" alt="Fusion 360 model of a pair of Jansen legs sharing one crank">
+        <figcaption>Fusion 360 model of one leg pair. Both legs share a single crank in the middle.</figcaption>
+      </figure>
+      <figure>
+        <img class="fit" src="../images/walking-linkage-nest.jpg" alt="CNC nesting layout of links on one plywood sheet">
+        <figcaption>Nesting the links onto a sheet for the CNC router.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/walking-linkage-cnc.jpg" alt="CNC router cutting leg links out of a plywood sheet">
+        <figcaption>Many painful hours working with the CNC machine.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/walking-linkage-links.jpg" alt="Cut plywood links laid out on the floor with white PVC bushings pressed into the joints">
+        <figcaption>Cut links with the PVC bushings pressed in, ready for assembly.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/walking-linkage-side.jpg" alt="One side of the walker partially assembled, with legs mounted on PVC shafts">
+        <figcaption>The first side coming together on its PVC shafts.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/walking-linkage-award.jpg" alt="Glass trophy reading EOH Outstanding RSO Exhibit 1st Place, The Beast, 2025">
+        <figcaption>1st place, Outstanding RSO Exhibit.</figcaption>
+      </figure>
+    </div>
+
+    <p class="footer"><a href="../index.html">&larr; Back to all projects</a></p>
+  </main>
+</body>
+</html>

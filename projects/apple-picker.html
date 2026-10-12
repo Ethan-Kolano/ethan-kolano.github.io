@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robotic Apple Picker | Ethan Kolano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="../index.html">&larr; All projects</a>
+
+    <header class="project-header">
+      <h1>Robotic Apple Picker End-Effector</h1>
+      <p class="meta">Undergraduate Research Assistant · Intelligent Machines &amp; Materials Lab, Oregon State University · Summer 2025</p>
+      <p class="summary">A sealed suction-cup end-effector that packages vacuum, sensing, and electronics for a six-axis robot arm picking apples autonomously.</p>
+    </header>
+
+    <!-- Main photo and video, side by side (they stack on phones).
+         The square photo images/apple-picker.jpg is the home page card. -->
+    <div class="media-pair">
+      <figure>
+        <img src="../images/apple-picker-hero.jpg" alt="Finished end-effector prototype with an apple in the suction cup">
+        <figcaption>Final prototype with a test apple in the cup.</figcaption>
+      </figure>
+      <figure>
+        <video src="../images/apple-picker-demo.mp4" poster="../images/apple-picker-demo-poster.jpg" autoplay muted loop playsinline aria-label="Handheld test of the end-effector picking an apple off a test branch"></video>
+        <figcaption>Handheld test: grabbing and pulling an apple off the test branch.</figcaption>
+      </figure>
+    </div>
+
+    <div class="details">
+      <section>
+        <h2>Problem / Goal</h2>
+        <p>The lab was evaluating grippers that could reliably detect and pick apples autonomously with a six-axis robot arm. My task was to design the end-effector for a suction-cup gripper being tested. It had to house the suction cup, flex sensors embedded in the cup, a time-of-flight distance sensor, an Arduino, and the air hose connection, and mount to the arm through the lab's existing flange adapter.</p>
+        <p>Two constraints drove the design. The end-effector couldn't be much bigger than the suction cup itself, and the whole assembly had to hold a low, steady vacuum so it could grab, pull, and hold apples through continuous picking.</p>
+      </section>
+
+      <section>
+        <h2>My Role</h2>
+        <p>I owned the end-effector from concept to working prototype: CAD, sealing design, fabrication, and assembly. Additionally, I helped write the Arduino code. I worked largely independently, with occasional check-ins with my PI.</p>
+      </section>
+
+      <section>
+        <h2>Design Process</h2>
+        <ul>
+          <li><strong>Sealing.</strong> The vacuum requirement made sealing the core problem. This was my first time designing with O-rings, so I spent about two weeks researching O-ring types, sizes, and fits before committing to groove dimensions. Holding the groove tolerances on 3D-printed parts was the main challenge across iterations.</li>
+          <li><strong>Electrical feedthrough.</strong> Flex sensor wires had to exit through the sealed base. Commercial feedthroughs were too expensive for a prototype, so I made my own using an acrylic plate with wire holes in the center and screw holes around the perimeter. The wires were sealed with epoxy, given strain relief with hot glue, and the plate sealed to the base with an axial O-ring.</li>
+          <li><strong>Packaging.</strong> The base includes a time-of-flight sensor that sits inside the housing and looks out through the suction cup's opening to detect apple distance, an Arduino sitting outside the housing, and a sealed, third-party air hose nozzle.</li>
+          <li><strong>Fabrication.</strong> I 3D printed the housing and coated the inside and outside surfaces with epoxy to make it airtight, then assembled it with off-the-shelf pipe fittings, O-rings, and a hose clamp.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <p>The prototype held a vacuum and successfully picked apples during testing. However, it wasn't fully finished: the intake hose still needed a permanent welded mount, but the system held vacuum and picked apples regardless. The planned next step was remaking the housing in an inherently airtight material instead of an epoxy-coated print.</p>
+      </section>
+
+      <section>
+        <h2>Tools Used</h2>
+        <p>Fusion 360, 3D printing, laser cutting, epoxy sealing, O-ring gland design, Arduino.</p>
+      </section>
+
+      <section>
+        <h2>Lessons Learned</h2>
+        <p>I spent a lot of time perfecting details before building, which left room for only a few iterations. If I did it again, I'd definitely get an inexpensive prototype built sooner, since a physical part exposes design flaws much faster than CAD does (especially when it takes a whole day to print).</p>
+      </section>
+    </div>
+
+    <!-- GALLERY: each photo has a caption. Copy a <figure> block to add more. -->
+    <div class="gallery">
+      <figure>
+        <img src="../images/apple-picker-2.jpg" alt="End-effector housing with the suction cup removed">
+        <figcaption>Housing with the cup removed: the O-ring seal at the top and the acrylic feedthrough plate on the side.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/apple-picker-3.jpg" alt="Top-down view into the suction cup">
+        <figcaption>Looking into the cup: four flex sensors around the rim, with the time-of-flight sensor behind the opening.</figcaption>
+      </figure>
+    </div>
+
+
+    <p class="footer"><a href="../index.html">&larr; Back to all projects</a></p>
+  </main>
+</body>
+</html>
